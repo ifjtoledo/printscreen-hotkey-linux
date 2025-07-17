@@ -29,3 +29,50 @@ git clone https://github.com/ifjtoledo/printscreen-hotkey-linux.git
 cd printscreen-hotkey-linux
 chmod +x install.sh
 sudo ./install.sh
+```
+Eso configurará automáticamente:
+
+    El plugin dual-function-keys
+
+    Las reglas en YAML (/etc/interception/dual-function-keys.yml)
+
+    El daemon udevmon como servicio systemd
+
+    El mapeo de KEY_RIGHTALT con soporte dual
+
+🔧 ¿Qué hace exactamente?
+
+Este mapeo:
+
+- KEY: KEY_RIGHTALT
+  TAP: KEY_RIGHTALT
+  HOLD: KEY_SYSRQ
+
+Permite:
+
+    Tap corto (normal): Alt derecho
+
+    Mantener pulsado (>3s): PrintScreen
+
+Ideal para teclados donde Alt derecho no se usa (ej. layout español o desarrolladores que trabajan con inglés).
+📸 Demo (captura de pantalla)
+
+⚠️ Problemas conocidos
+
+    HOLD_MILLISEC no funciona en versiones antiguas (bug en el plugin)
+
+    Es necesario usar TAP_MILLISEC: 3000 (3 segundos) como umbral de espera
+
+    A veces requiere reiniciar udevmon con sudo systemctl restart udevmon
+
+🧩 Personalización
+
+Puedes editar /etc/interception/dual-function-keys.yml para usar otra tecla o cambiar HOLD por otra acción, como abrir un programa:
+
+HOLD: KEY_F13  # y luego mapear F13 con otra herramienta como xdotool
+
+💡 Créditos y ayuda
+
+Este proyecto fue creado y probado por Jorge Toledo (@ifjtoledo) y documentado paso a paso con la ayuda de [ChatGPT 4o].
+
+¡Aporta con mejoras, sugerencias o issues! 🙌
