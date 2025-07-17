@@ -1,0 +1,10 @@
+# Se usa KEY_RIGHTALT porque es redundante en mi layout y puede sacrificarse
+# La mantengo como PANTALLAZO con TAP largo de 3 segundos
+
+TIMING:
+  TAP_MILLISEC: 3000
+dual-function-keys.yml
+MAPPINGS:
+  - KEY: KEY_RIGHTALT
+    TAP: KEY_RIGHTALT
+    HOLD: KEY_SYSRQ
